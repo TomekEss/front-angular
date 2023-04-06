@@ -1,0 +1,41 @@
+<style>
+  .card-footer {
+    background-color: rgb(0, 0, 0);
+  }
+  a {
+    color: white;
+  }
+  i {
+    color: red;
+    font-size: 120%;
+  }
+  .comment-author-img {
+  object-fit: cover;
+  width: 3%;
+  height: 3%;
+
+  }
+</style>
+
+<div class="card">
+  <div class="card-block">
+    <p class="card-text">
+      {{ opinie.body }}
+    </p>
+  </div>
+  <div class="card-footer">
+    <a class="comment-author" [routerLink]="['/profile', opinie.author.username]">
+      <img [src]="opinie.author.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" alt="author image" class="comment-author-img" />
+    </a>
+    &nbsp;
+    <a class="comment-author" [routerLink]="['/profile', opinie.author.username]">
+      {{ opinie.author.username }}
+    </a>
+    <span class="date-posted">
+      {{ opinie.createdAt | date: 'longDate' }}
+    </span>
+    <span class="mod-options" [hidden]="!canModify">
+      <i class="ion-trash-a" (click)="deleteClicked()"></i>
+    </span>
+  </div>
+</div>

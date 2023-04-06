@@ -1,0 +1,142 @@
+<style>
+  .header img {
+  float: inline-start;
+  max-width:100%;
+  height: 140px;
+}
+  a {
+    font-size: 130%;
+  }
+
+  h1 {
+    font-size: 160%;
+    color: rgb(19, 113, 235);
+  }
+  .navbar {
+  background-color: rgba(55, 143, 226, 0.267);
+  color: white;
+  margin: 0px;
+  padding: 1px;
+  }
+</style>
+
+
+<div class="header-page">
+
+
+  <div class="header">
+    <img src="../assets/okladka/lolo.png" alt="logo">
+  </div>
+
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-dark">
+
+  <div class="container">
+    <a class="navbar-brand" routerLink="/"><h1>GRY-PC</h1></a>
+
+    <!-- Show this for logged out users -->
+    <ul *appShowAuthed="false"
+      class="nav navbar-nav pull-xs-right">
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/">
+          <i class="ion-ios-home"></i>
+          Strona główna
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/encyklopedia">
+          <i class="ion-ios-list-outline"></i>
+          Encyklopedia
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/login"
+          routerLinkActive="active">
+          <i class=ion-log-in></i>
+          Logowanie
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/register"
+          routerLinkActive="active">
+          <i class="ion-person-add"></i>
+          Rejestracja
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Show this for logged in users -->
+    <ul *appShowAuthed="true"
+      class="nav navbar-nav pull-xs-right">
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+          <i class="ion-ios-home"></i>
+          Strona główna
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/encyklopedia">
+          <i class="ion-ios-list-outline"></i>
+          Encyklopedia
+        </a>
+      </li>
+
+
+
+      <li *ngIf="currentUser.admin == 1" class="nav-item">
+        <a class="nav-link"
+          routerLink="/editor"
+          routerLinkActive="active">
+          <i class="ion-compose"></i>&nbsp;Nowy artykuł
+        </a>
+      </li>
+
+      <li *ngIf="currentUser.admin == 1" class="nav-item">
+        <a class="nav-link"
+          routerLink="/geditor"
+          routerLinkActive="active">
+          <i class="ion-ios-game-controller-b-outline"></i>&nbsp;Nowa gra
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+          routerLink="/settings"
+          routerLinkActive="active">
+          <i class="ion-gear-a"></i>&nbsp;Ustawienia
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+          [routerLink]="['/profile', currentUser.username]"
+          routerLinkActive="active">
+          <i class="ion-person"></i>&nbsp;
+          {{ currentUser.username }}
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+</div>
+

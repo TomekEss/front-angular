@@ -1,0 +1,27 @@
+<div class="encyklopedia">
+<div class="container page">
+
+  <div class="parenting">
+    <div class="div22"> <button class="button button1" (click)="setListTo('all', {kategorie: kategorie[0]})">RPG</button> </div>
+    <div class="div23"> <button class="button button2" (click)="setListTo('all', {kategorie: kategorie[1]})">Bijatyki</button> </div>
+    <div class="div24"> <button class="button button3" (click)="setListTo('all', {kategorie: kategorie[2]})">Strzelanki</button> </div>
+    <div class="div25"> <button class="button button4" (click)="setListTo('all', {kategorie: kategorie[3]})">Przygodowe</button> </div>
+    <div class="div26"> <button class="button button5" (click)="setListTo('all', {kategorie: kategorie[4]})">Fabularne</button> </div>
+    <div class="div27"> <button class="button button6" (click)="setListTo('all', {kategorie: kategorie[5]})">Sportowe</button></div>
+    <div class="div28"> <button class="button button7" (click)="setListTo('all', {kategorie: kategorie[6]})">Symulacje</button> </div>
+    <div class="div29"> <button class="button button8" (click)="setListTo('all', {kategorie: kategorie[7]})">Wyścigi</button> </div>
+    <div class="div30"> <button class="button button9" (click)="setListTo('all', {kategorie: kategorie[8]})">Logiczne</button> </div>
+    <div class="div31">
+      <form class="search">
+        <input class="w3-input" placeholder="wpisz nazwę gry" type="text" [ngModel]="searchCriteria" (ngModelChange)="searchCriteriaChanged($event)" [ngModelOptions]="{standalone: true}">
+       <!-- <button (click)="search()">szukaj</button>-->
+      </form>
+    </div>
+    <div class="div32"></div>
+  </div>
+
+
+<app-gamelist [limit]="10" [config]="listConfig" [newSearchCriteria]="searchCriteria"></app-gamelist>
+
+</div>
+</div>

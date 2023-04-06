@@ -1,0 +1,131 @@
+<div class="geditor-page">
+  <div class="container page">
+  <div class=row>
+    <div class="col-md-10 offset-md-1 col-xs-12">
+
+      <app-list-errors [errors]="errors"></app-list-errors>
+
+      <form [formGroup]="gameForm">
+        <fieldset [disabled]="isSubmitting">
+
+          <fieldset class="form-group">
+            <input class="form-control form-control-lg"
+              formControlName="name"
+              type="text"
+              placeholder="Nazwa gry">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              formControlName="typ"
+              type="text"
+              placeholder="Typ">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              type="text"
+              placeholder="Kategorie gry"
+              [formControl]="kategorieField"
+              (keyup.enter)="addKategorie()" />
+
+          <div class="kategorie-list">
+            <span *ngFor="let kategorie of game.kategorieList; trackBy: trackByFn"
+              class="tag-default tag-pill">
+              <i class="ion-close-round" (click)="removeKategorie(kategorie)"></i>
+              {{ kategorie }}
+            </span>
+          </div>
+        </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control offset-md-3 col-xs-6"
+              type="file"
+              id="image"
+              placeholder="Zdjecie"
+              (change)="onFileSelected($event)"/>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              formControlName="link"
+              type="url"
+              placeholder="link">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <textarea class="form-control"
+              formControlName="opis"
+              rows="4"
+              placeholder="Opis">
+            </textarea>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <textarea class="form-control"
+              formControlName="body"
+              rows="16"
+              placeholder="Treść informacji">
+            </textarea>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              formControlName="premiera"
+              type="date"
+              placeholder="data premiery">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              formControlName="ram"
+              type="number"
+              placeholder="ile ram">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              formControlName="procesorintel"
+              placeholder="procesor intel">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <textarea class="form-control"
+              formControlName="procesoramd"
+              placeholder="procesor amd">
+            </textarea>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              formControlName="grafikanvidia"
+              placeholder="grafikanvidia">
+          </fieldset>
+
+          <fieldset class="form-group">
+            <input class="form-control"
+              formControlName="grafikaamd"
+              placeholder="grafikaamd">
+          </fieldset>
+
+          <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
+            Dodaj gre
+          </button>
+
+
+        </fieldset>
+      </form>
+
+
+
+
+
+
+
+
+
+
+     </div>
+   </div>
+  </div>
+</div>

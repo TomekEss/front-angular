@@ -1,0 +1,35 @@
+<style>
+  .container.page {
+    margin-top: 0;
+  }
+  .search{
+    margin-left: 22cm;
+  }
+
+  .parent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 5px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+
+</style>
+
+<div class="home-page">
+
+  <div class="parent"></div>
+
+  <div class="container page">
+    <div class = "search">
+      <form class="search-titl">
+        <input class="w3-input" placeholder="wpisz nazwę artykułu" type="text" [ngModel]="searchCriteria" (ngModelChange)="searchCriteriaChanged($event)" [ngModelOptions]="{standalone: true}">
+      </form>
+  </div>
+
+    <div class="parent"></div>
+        <app-article-list [limit]="6" [config]="listConfig" [newSearchCriteria]="searchCriteria"></app-article-list>
+    </div>
+
+</div>
+

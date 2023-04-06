@@ -1,0 +1,67 @@
+<style>
+
+.parent {
+display: grid;
+grid-template-columns: 1fr 0.01fr 0.6fr;
+grid-template-rows: 0.6fr 1.2fr 0.18fr 0.15fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+.div1 {
+  background-color: rgba(0, 60, 255, 0.295);
+  text-align: center;
+  color: rgb(0, 0, 0);
+  grid-area: 1 / 1 / 2 / 2; }
+.div2 {
+  background-color: rgba(0, 60, 255, 0.185);
+  color: rgb(0, 0, 0);
+  grid-area: 2 / 1 / 3 / 2; }
+.div3 {
+  background-color: rgba(0, 60, 255, 0.116);
+  text-align: center;
+  color: rgb(0, 0, 0);
+  grid-area: 3 / 1 / 4 / 2; }
+.div4 {
+  background: rgba(165, 42, 42, 0);
+  grid-area: 1 / 2 / 4 / 3; }
+.div5 {
+  background: cadetblue;
+  grid-area: 1 / 3 / 4 / 4; }
+.div6 {
+  background: rgba(128, 255, 0, 0);
+  grid-area: 4 / 1 / 5 / 4; }
+
+.parent img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+
+<div class="parent">
+
+        <div class="div1">
+          <h1>{{ article.titl }}</h1>
+        </div>
+
+        <div class="div2">
+              {{ article.description }}
+        </div>
+
+        <div class="div3">
+            <a [routerLink]="['/article', article.slug]" class="preview-link">
+            <span><h5>Zobacz artykuł</h5></span>
+            </a>
+        </div>
+
+        <div class="div4"></div>
+
+        <div class="div5">
+          <!-- <img src="../assets/okladka/fifa.jpg"> -->
+          <img [src]="imgData"/>
+        </div>
+
+        <div class="div6"></div>
+</div>

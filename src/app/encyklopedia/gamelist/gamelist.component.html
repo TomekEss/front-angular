@@ -1,0 +1,31 @@
+<app-gamepreview *ngFor="let game of results; trackBy: trackByFn"
+  [game]="game">
+</app-gamepreview>
+
+
+
+
+<div class="app-article-preview"
+  [hidden]="!loading">
+  Ładowanie...
+</div>
+
+<div class="app-article-preview"
+  [hidden]="loading || results.length">
+  Strona nie posiada artykułów.
+</div>
+
+<nav [hidden]="loading || totalPages.length <= 1">
+  <ul class="pagination">
+
+    <li class="page-item"
+      [ngClass]="{'active': pageNumber === currentPage}"
+      *ngFor="let pageNumber of totalPages; trackBy: trackByFn"
+      (click)="setPageTo(pageNumber)">
+
+      <a class="page-link" >{{ pageNumber }}</a>
+
+    </li>
+
+  </ul>
+</nav>

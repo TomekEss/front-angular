@@ -1,0 +1,133 @@
+<div class = "game-page">
+
+
+
+<div class="container page">
+
+
+  <span [hidden]="!canModify">
+    <a class="btn btn-sm btn-outline-secondary"
+       [routerLink]="['/geditor', game.slug]">
+      <i class="ion-edit"></i> Edytuj Gre
+    </a>
+
+    <button class="btn btn-sm btn-outline-danger"
+      (click)="deleteGame()">
+      <i class="ion-trash-a"></i> Usuń Gre
+    </button>
+  </span>
+
+
+
+  <div class="parent">
+    <div class="div1"> <h1>{{this.game.name}}</h1> </div>
+    <div class="div2"> <h3>{{this.game.premiera}}</h3> </div>
+    <div class="div3"> <h3>{{this.game.typ}}</h3> </div>
+    <div class="div4"> {{this.game.opis}} </div>
+    <div class="div5"> <img [src]=this.game.image> </div>
+    <div class="div6"> </div>
+    <div class="div7"> <label> Wybierz Procesor </label>
+    <select name = "procesor"> <option value="intel"> IntelCore </option>
+                                <option value="amd"> AMD </option>
+    </select>
+    </div>
+    <div class="div8"> <label> Wybierz Grafike </label>
+      <select name = "procesor"> <option value="intel"> NVIDIA </option>
+                                  <option value="amd"> AMD </option>
+      </select>
+    </div>
+    <div class="div9"><label> Pamięc RAM </label>
+      <select name = "RAM"> <option type = 'number'> 1 </option>
+                            <option type = 'number'> 2 </option>
+      </select>
+    </div>
+    <div class="div10"> <button>Sprawdź</button> </div>
+    <div class="div11"> </div>
+    <div class="div12"> <h6><p>Minimalny Procesor: {{this.game.procesorintel}}/{{this.game.procesoramd}} </p></h6>
+                        <h6><p>Minimalna Grafika: {{this.game.grafikanvidia}}/{{this.game.grafikaamd}} </p></h6>
+                        <h6><p>Minalna pamięć RAM: {{this.game.ram}} </p></h6>
+
+
+    </div>
+  </div>
+
+  <div class="parent2">
+    <div class="div13"> <img src="https://image.api.playstation.com/vulcan/img/rnd/202111/0822/zDXM9K2cQiq0vKTDwF0TkAor.png" alt="noewe"> </div>
+    <div class="div14"> <img src="https://sm.ign.com/t/ign_pl/screenshot/default/far-cry-6_8b3v.1280.jpg" alt="noewe1"> </div>
+    <div class="div15"> <img src="https://www.miastogier.pl/baza/Encyklopedia/gry/News/12.10.2021/nws_fc6_005.jpg" alt="noewe2"> </div>
+    <div class="div16">  </div>
+  </div>
+
+  <div class="parent3">
+    <div class="div33"> <iframe width='620' height='440' [src]="videoURL"> </iframe> </div>
+    <div class="div34"> </div>
+    <div class="div35"> </div>
+
+  </div>
+
+  <div class="tresc">
+    <article>
+    <p>{{this.game.body}}</p>
+     </article>
+  </div>
+
+  <div class="niezalogowany">
+    <div *appShowAuthed="false">
+      <p>Aby dodać opinie <a [routerLink]="['/login']">zaloguj się</a> lub <a [routerLink]="['/register']">zarejestruj.</a> </p>
+    </div>
+    </div>
+
+    <div class="zalogowany">
+      <div *appShowAuthed="true">
+        <app-list-errors [errors]="opinieFormErrors"></app-list-errors>
+        <form class="card opinie-form" (ngSubmit)="addOpinie()">
+          <fieldset [disabled]="isSubmitting">
+
+              <textarea class="form-control"
+                placeholder="Napisz opinie..."
+                rows="3"
+                [formControl]="opinieControl"
+              ></textarea>
+
+            <div class="card-footer">
+              <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" alt="user image" class="opinie-author-img" />
+              <button class="btn btn-sm btn-primary" type="submit">
+               Wyślij opinie
+              </button>
+            </div>
+          </fieldset>
+        </form>
+
+        <div>
+          <form class="vote" [formGroup]="voteForm" (ngSubmit)="addVote(value)" >
+          <span>Twoja ocena:</span>
+          <select formControlName="rating">
+            <option [ngValue]="null" disabled>Wybierz ocenę</option>
+            <option *ngFor="let rating of ratings" [ngValue]="rating.id">{{rating.name}}</option>
+          </select>
+          <!-- <select>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>522ss</option>
+          </select> -->
+          <button type="submit">Głosuj</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  <div class="opinie">
+    <app-game-opinie
+      *ngFor="let opinie of opinie; trackBy: trackByFn"
+      [opinie]="opinie"
+      (deleteOpinie)="onDeleteOpinie(opinie)">
+    </app-game-opinie>
+  </div>
+
+
+</div>
+</div>
+
